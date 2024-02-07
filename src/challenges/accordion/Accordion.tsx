@@ -1,5 +1,6 @@
 import AccordionTab from "./Accordion-tab";
 import './accordion.css'
+import React from "react";
 
 const accordionData = [
   {

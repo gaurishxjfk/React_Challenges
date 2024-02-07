@@ -2,7 +2,15 @@
 import { useEffect, useState } from "react";
 import { bucketHeight, totalBuckets } from "../../App";
 
-const BucketWaterComponent = ({
+interface BucketWaterComponentProps {
+  index: number;
+  setActiveIndexes: React.Dispatch<React.SetStateAction<number | null>>;
+  totalcount: number;
+  activeIndexs: null | number;
+  setTotalCount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const BucketWaterComponent: React.FC<BucketWaterComponentProps> = ({
   index,
   setActiveIndexes,
   totalcount,

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-const AccordionTab = ({ header, desc }) => {
+const AccordionTab = ({ header, desc }: { header: string; desc: string }) => {
   const [open, setOpen] = useState(false);
   return (
     <>

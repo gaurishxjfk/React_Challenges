@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import BucketWaterComponent from './BucketWaterComponent';
 import './waterbalancer.css'
 
@@ -6,14 +6,14 @@ export const totalBuckets = 4;
 export const bucketHeight = 10;
 
 const WaterBalancer = () => {
-    const [totalcount, setTotalCount] = useState(0);
-    const [activeIndexs, setActiveIndexes] = useState(null);
+    const [totalcount, setTotalCount] = useState<number>(0);
+    const [activeIndexs, setActiveIndexes] = useState<null | number>(null);
   return (
     <section className="main">
     Total Water {totalcount} L
     <div className="bucketSection">
       {Array(totalBuckets)
-        .fill()
+        .fill(totalBuckets)
         .map((_, index) => (
           <BucketWaterComponent
             key={index}
