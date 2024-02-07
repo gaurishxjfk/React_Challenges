@@ -1,6 +1,5 @@
 .acc-head{
     display: flex;
-    width: 50vh;
     background-color: aliceblue;
     color: black;
     padding-left: 2vh;
@@ -17,7 +16,6 @@
   
   .acc-desc{
     display: flex;
-    width: 50vh;
     background-color: rgb(207, 207, 207);
     color: black;
     padding-left: 2vh;
@@ -31,4 +29,14 @@
     transition: all .3s;
     font-weight: bolder;
     font-size: larger;
+  }
+
+  .acc{
+    border: 1px solid rgb(122, 122, 122);
+    width: 60%;
+    margin:  0 auto;
+  }
+
+  .title{
+    margin-bottom: 2vh;
   }
