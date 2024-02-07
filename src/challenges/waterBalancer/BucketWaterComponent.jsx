@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { bucketHeight, totalBuckets } from "./App";
+import { bucketHeight, totalBuckets } from "../../App";
 
 const BucketWaterComponent = ({
   index,

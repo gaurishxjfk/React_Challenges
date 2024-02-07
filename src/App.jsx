@@ -1,32 +1,22 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
-import BucketWaterComponent from "./BucketWaterComponent";
 
 export const totalBuckets = 4;
 export const bucketHeight = 10;
 
 function App() {
-  const [totalcount, setTotalCount] = useState(0);
-  const [activeIndexs, setActiveIndexes] = useState(null);
 
   return (
-    <section className="main">
-      Total Water {totalcount} L
-      <div className="bucketSection">
-        {Array(totalBuckets)
-          .fill()
-          .map((_, index) => (
-            <BucketWaterComponent
-              key={index}
-              index={index}
-              totalcount={totalcount}
-              activeIndexs={activeIndexs}
-              setActiveIndexes={setActiveIndexes}
-              setTotalCount={setTotalCount}
-            />
-          ))}
-      </div>
-    </section>
+    <nav>
+    <ul>
+      <li>
+        <Link to={`water-balancer`}>Water Balancer</Link>
+      </li>
+      <li>
+        <Link to={`accordion`}>Accordion</Link>
+      </li>
+    </ul>
+  </nav>
   );
 }
 
