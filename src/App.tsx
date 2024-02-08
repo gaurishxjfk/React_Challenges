@@ -15,6 +15,9 @@ function App() {
       <li>
         <Link to={`accordion`}>Accordion</Link>
       </li>
+      <li>
+        <Link to={`searchbar`}>Searchbar</Link>
+      </li>
     </ul>
   </nav>
   );
