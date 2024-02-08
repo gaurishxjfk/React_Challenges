@@ -1,0 +1,94 @@
+.searchbar{
+    width: 60%;
+    margin: 0 auto;
+    border: 2px solid rgb(0, 102, 255);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    padding: .5vh;
+    gap: .5vh;
+    position: relative;
+    align-items: end;
+}
+.serachbar-chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vh;
+}
+
+#username{
+    border: none;
+    outline: none;
+    background: none ;
+    margin: .5vh;
+    width: 30%;
+}
+
+.userList{margin-right: 20%;
+
+    max-height: 25vh;
+    overflow-y: scroll;
+    position: absolute;
+    
+    background: white;
+    color: rgb(61, 61, 61);
+    min-width: 50vh;
+    left: 50%;
+    top: 105%;
+}
+
+.userListEl{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    gap: 2vh;
+    padding: 1vh;
+}
+.userListEl:hover{
+    background: rgb(218, 218, 218);
+    font-weight: 700;
+}
+.chip{
+    height: 35px;
+    display: flex;
+    gap: 1vh;
+    border-radius: 35px;
+    padding: 1px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.chip-user{
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.chip-user-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    color: aliceblue;
+    background-color: rgb(66, 46, 182);
+}
+
+
+
+.chip-remove{
+    cursor: pointer;
+    background: none ;
+    color: rgb(82, 82, 82);
+    font-weight: 900;
+    border: none;
+    margin-right: .5vh;
+}
+
+.chip-remove:hover{
+    color: rgb(48, 48, 48);
+}

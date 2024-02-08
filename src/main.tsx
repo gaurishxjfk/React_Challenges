@@ -5,6 +5,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import WaterBalancer from "./challenges/waterBalancer/WaterBalancer.js";
 import Accordion from "./challenges/accordion/Accordion.js";
+import Searchbar from "./challenges/ChipComponent/Searchbar.js";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/accordion",
     element: <Accordion />,
+  },
+  {
+    path: "/searchbar",
+    element: <Searchbar />,
   },
 ]);
 
