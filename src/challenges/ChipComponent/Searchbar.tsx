@@ -26,12 +26,11 @@ const filterArrayWithID = (arr: userProp[], id: number) =>
 const findInArrWithID = (arr: userProp[], id: number) =>
   arr.find((user) => user.id === id);
 
-const phraseHighlighter = (str: string, phrase: string) => {
-  const lowerCaseStr = str.toLowerCase();
-  const lowerCasePhrase = phrase.toLowerCase();
-
-  if (lowerCaseStr.includes(lowerCasePhrase)) {
-    const index = lowerCaseStr.indexOf(lowerCasePhrase);
+const highlightSearchPhrase = (str: string, phrase: string) => {
+  const lowerStr = str.toLowerCase();
+  const lowerPhrase = phrase.toLowerCase();
+  if (phrase.length > 0 && lowerStr.includes(lowerPhrase)) {
+    const index = lowerStr.indexOf(lowerPhrase);
     return (
       <>
         {str.substring(0, index)}
@@ -44,8 +43,7 @@ const phraseHighlighter = (str: string, phrase: string) => {
 };
 
 const Searchbar = () => {
-  const inputRef = useRef(null);
-  const userListRef = useRef(null);
+  const inputRef = useRef<null | HTMLInputElement>(null);
   const [users, setUsers] = useState<userProp[]>(usersArr);
   const [selectedUsers, setSelectedUsers] = useState<userProp[]>([]);
   const [searchVal, setSearchVal] = useState("");
@@ -63,6 +61,7 @@ const Searchbar = () => {
     const selected = findInArrWithID(users, id);
     if (selected) setSelectedUsers([...selectedUsers, selected]);
     setUsers(filterArrayWithID(users, id));
+    inputRef.current!.focus();
   };
 
   const handleSeachVal = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +69,11 @@ const Searchbar = () => {
   };
 
   const removeLastUser = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (searchVal.length === 0 && e.key === "Backspace") {
+    if (
+      searchVal.length === 0 &&
+      e.key === "Backspace" &&
+      selectedUsers.length > 0
+    ) {
       if (lastEle !== null) {
         setSelectedUsers(filterArrayWithID(selectedUsers, lastEle.id));
         setLastEle(null);
@@ -81,14 +84,19 @@ const Searchbar = () => {
   };
 
   useEffect(() => {
-    const findUsers = usersArr
-      .filter(
-        (user) => !selectedUsers.some((selUser) => selUser.id === user.id)
-      )
-      .filter((user) =>
-        user.name.toLowerCase().includes(searchVal.toLowerCase())
-      );
-    setUsers(findUsers);
+    function debouncedFunc() {
+      console.log(searchVal);
+      const findUsers = usersArr
+        .filter(
+          (user) => !selectedUsers.some((selUser) => selUser.id === user.id)
+        )
+        .filter((user) =>
+          user.name.toLowerCase().includes(searchVal.toLowerCase())
+        );
+      setUsers(findUsers);
+    }
+    const timer = setTimeout(debouncedFunc, 1000);
+    return () => clearTimeout(timer);
   }, [searchVal, selectedUsers]);
 
   return (
@@ -119,7 +127,6 @@ const Searchbar = () => {
         />
         <div
           className="userList"
-          ref={userListRef}
           style={{
             display: searchVal.length === 0 && !isOutside ? "none" : "block",
           }}
@@ -136,7 +143,7 @@ const Searchbar = () => {
                 <div className="chip-user-icon">{user.name.split("")[0]}</div>
                 <span>
                   {searchVal.length > 0
-                    ? phraseHighlighter(user.name, searchVal)
+                    ? highlightSearchPhrase(user.name, searchVal)
                     : user.name}
                 </span>
               </div>
